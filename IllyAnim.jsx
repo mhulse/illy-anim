@@ -10,16 +10,15 @@
 //  Window.alert('You must open at least one document.');
 // }
 
+// Dialog window instance:
+var dialog; // Putting it here easier than passing it around.
+
 // Extend ExtendScript's functionality:
 $.setTimeout = function(name, time) {
-    $.sleep(time);
-    app[name]();
+    // Pause the loop for `time`.
+    $.sleep(time); // Unfortunately this is a blocking function; there are not alternatives as of June 2015.
+    app[name](); // Call passed `Application` function by name string.
 };
-
-// Only run if there's at least one document open:
-if (app.documents.length > 0) {
-    init();
-}
 
 function init() {
     
@@ -28,19 +27,19 @@ function init() {
         preferredSize: [200, ""], \
         text: "Animate Layers", \
         _time: EditText { text: "100",  }, \
-        _start: Button { text: "Start" }, \
         group: Group { \
             panel: Panel { \
                 preferredSize: [' + size + ', ""], \
                 alignChildren: "left", \
-                _down: RadioButton { text: "Top down", value: "true" }, \
-                _up: RadioButton { text: "Bottom up" }, \
-                _pong: RadioButton { text: "Ping pong" }, \
-            } \
+                _down: RadioButton { text: "Top down", value: "true", }, \
+                _up: RadioButton { text: "Bottom up", }, \
+                _pong: Checkbox { text: "Ping pong", value: "true", }, \
+            }, \
         }, \
-        _close: Button { text: "Close" } \
+        _start: Button { text: "Start" }, \
+        _close: Button { text: "Close" }, \
     }';
-    var dialog = new Window(meta);
+    dialog = new Window(meta);
     
     // Time input box:
     dialog._time.active = true;
@@ -61,15 +60,15 @@ function init() {
     
 }
 
-// Not sure of a better spot to put this:
-var reverse = false;
-
-function anim(dialog) {
+function anim(dialog, reverse) {
     
     var count = app.activeDocument.layers.length;
     var radios = dialog.group.panel;
+    var pong = radios._pong.value;
     var i;
-    var il;
+    
+    // Default function param:
+    reverse = reverse || false;
     
     // Hide all layers:
     clean();
@@ -79,19 +78,27 @@ function anim(dialog) {
     
     // http://stackoverflow.com/a/3586329/922323
     if ( ! reverse) {
-        for (i = 0; i < count; i++) {
-            control(i, dialog); // Count up!
-        }
-        if (radios._pong.value) {
-            reverse = true;
-            anim(dialog);
-        }
+        up(count);
+        pong && down(count--);
     } else {
-        i = count;
-        while (i--) {
-            control(i, dialog); // Count down!
-        }
-        reverse = false;
+        down(count);
+        pong && up(count++);
+    }
+    
+}
+
+function up(count) {
+    
+    for (i = 0; i < count; i++) {
+        control(i); // Count up!
+    }
+    
+}
+
+function down(count) {
+    
+    while (count--) {
+        control(count); // Count down!
     }
     
 }
@@ -99,6 +106,8 @@ function anim(dialog) {
 function clean() {
     
     var layers = app.activeDocument.layers;
+    var i;
+    var il;
     
     for (i = 0, il = layers.length; i < il; i++) {
         layers[i].visible = false;
@@ -106,17 +115,25 @@ function clean() {
     
 }
 
-function control(i, dialog) {
+function control(i) {
     
-    var layers = app.activeDocument.layers;
     var current;
     var previous;
-    var time = Number(dialog._time.text); // `EditText` control accepts just text.
     
-    current = layers[i];
+    // Current layer:
+    current = app.activeDocument.layers[i];
+    // Cache the current layer so we can turn it off in the next loop:
     previous = current;
+    // Show the current layer:
     current.visible = true;
-    $.setTimeout('redraw', time);
+    // Pause the looping to control "frame rate" of "animation":
+    $.setTimeout('redraw', Number(dialog._time.text)); // `EditText` control accepts just text.
+    // We're moving on, hide the layer in preparation for the next loop:
     previous.visible = false;  
     
+}
+
+// Only run if there's at least one document open:
+if (app.documents.length > 0) {
+    init();
 }

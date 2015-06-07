@@ -10,7 +10,7 @@ Here’s a close-up of the script’s dialog window:
 
 ## Installation
 
-Put [ Layer Animation ⭐⭐⭐⭐⭐.jsx]( Layer Animation ⭐⭐⭐⭐⭐.jsx) in `/Applications/Adobe\ Illustrator\ CC\ 2014/Presets.localized/en_US/Scripts` and run it directly in Illustrator via the <kbd>File</kbd> `>` <kbd>Scripts</kbd> menu.
+Put <a href=" Layer Animation ⭐⭐⭐⭐⭐.jsx"> Layer Animation ⭐⭐⭐⭐⭐.jsx</a> in `/Applications/Adobe\ Illustrator\ CC\ 2014/Presets.localized/en_US/Scripts` and run it directly in Illustrator via the <kbd>File</kbd> `>` <kbd>Scripts</kbd> menu.
 
 ## Development
 

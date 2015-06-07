@@ -1,4 +1,4 @@
-﻿#target illustrator-18
+﻿#target illustrator
 
 /**
  * @@@BUILDINFO@@@ IllyAnim.jsx !Version! Sat Jun 06 2015 18:18:19 GMT-0700
@@ -6,7 +6,16 @@
 
 // Dialog window instance:
 var dialog; // Putting it here, which is easier than passing it around.
+// Active document:
 var doc;
+var history;
+
+// Extend ExtendScript's functionality:
+$.setTimeout = function(name, time) {
+    // Pause the loop for `time`.
+    $.sleep(time); // Unfortunately this is a blocking function; there are not alternatives as of June 2015.
+    app[name](); // Call passed `Application` function by name string.
+};
 
 // Need this for production:
 if (app.documents.length > 0) {
@@ -19,13 +28,6 @@ if (app.documents.length > 0) {
 } else {
     Window.alert('You must open at least one document.');
 }
-
-// Extend ExtendScript's functionality:
-$.setTimeout = function(name, time) {
-    // Pause the loop for `time`.
-    $.sleep(time); // Unfortunately this is a blocking function; there are not alternatives as of June 2015.
-    app[name](); // Call passed `Application` function by name string.
-};
 
 function init() {
     
@@ -64,6 +66,10 @@ function init() {
         dialog.close();
     };
     dialog._close.alignment = 'fill';
+    
+    dialog.onShow = function() {
+        dialog.location.y = 150; // Adjust window so it's not in the center of the screen.
+    }
     
     // Show the dialog window:
     dialog.show();

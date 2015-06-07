@@ -8,7 +8,7 @@
 var dialog; // Putting it here, which is easier than passing it around.
 // Active document:
 var doc;
-var history;
+var history = [];
 
 // Extend ExtendScript's functionality:
 $.setTimeout = function(name, time) {
@@ -95,6 +95,9 @@ function anim() {
         pong && up(count, 1);
     }
     
+    // Restore visibility of layers before script was ran:
+    clean(true);
+    
 }
 
 function up(count, start) {
@@ -116,14 +119,32 @@ function down(count) {
     
 }
 
-function clean() {
+function clean(restore) {
     
     var layers = doc.layers;
+    var vis;
     var i;
     var il;
     
+    // Loop over all top-level layers in document:
     for (i = 0, il = layers.length; i < il; i++) {
-        layers[i].visible = false;
+        
+        // Do we want to restore previous layer's visibility?
+        if (restore) {
+            
+            // Yes, so get visibility flags from history array:
+            layers[i].visible = history[i];
+            
+        } else {
+            
+            // Not now, but create history array for later resoration:
+            history[i] = layers[i].visible;
+            
+            // Hide everything:
+            layers[i].visible = false;
+            
+       }
+        
     }
     
 }

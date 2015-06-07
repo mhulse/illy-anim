@@ -1,4 +1,4 @@
-# IllyAnim
+# Illustrator Layer Animation
 
 **[ExtendScript](http://en.wikipedia.org/wiki/ExtendScript) (`.jsx`) used to animate Adobe Illustrator’s layers in order to preview sequenced layer frames for animation.**
 
@@ -10,7 +10,7 @@ Here’s a close-up of the script’s dialog window:
 
 ## Installation
 
-Put [`IllyAnim.jsx`](IllyAnim.jsx) in `/Applications/Adobe\ Illustrator\ CC\ 2014/Presets.localized/en_US/Scripts` and run it directly in Illustrator via the <kbd>File</kbd> `>` <kbd>Scripts</kbd> menu.
+Put [ Layer Animation ⭐⭐⭐⭐⭐.jsx]( Layer Animation ⭐⭐⭐⭐⭐.jsx) in `/Applications/Adobe\ Illustrator\ CC\ 2014/Presets.localized/en_US/Scripts` and run it directly in Illustrator via the <kbd>File</kbd> `>` <kbd>Scripts</kbd> menu.
 
 ## Development
 

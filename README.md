@@ -8,6 +8,14 @@ Here’s a close-up of the script’s dialog window:
 
 ![dialog](https://cloud.githubusercontent.com/assets/218624/8022395/7e87a7d6-0c83-11e5-9c5c-d3c8a110a1fa.png)
 
+## Features
+
+1. Animates layers based on user-defined frame rate.
+1. Skips non-printable (template) layers.
+1. Ascending or descending layer animation.
+1. Automatic direction reversal (ping pong).
+1. Restores layer visibility when done.
+
 ## Installation
 
 Put <a href=" Layer Animation ⭐⭐⭐⭐⭐.jsx"> Layer Animation ⭐⭐⭐⭐⭐.jsx</a> in `/Applications/Adobe\ Illustrator\ CC\ 2014/Presets.localized/en_US/Scripts` and run it directly in Illustrator via the <kbd>File</kbd> `>` <kbd>Scripts</kbd> menu.
@@ -38,3 +46,17 @@ There’s a couple of ways to develop/test this script:
 * [ExtendScript libraries](https://forums.adobe.com/thread/1111415)
 * [ScriptUI Window in Photoshop – Palette vs. Dialog](http://www.davidebarranca.com/2012/10/scriptui-window-in-photoshop-palette-vs-dialog/)
 * [Archives For ExtendScript / JavaScript](http://www.davidebarranca.com/category/code/extendscript-javascript/)
+
+---
+
+#### LEGAL
+
+Copyright © 2015 [Micky Hulse](http://mky.io).
+
+Licensed under the Apache License, Version 2.0 (the “License”); you may not use this work except in compliance with the License. You may obtain a copy of the License in the LICENSE file, or at:
+
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+<img src="https://github.global.ssl.fastly.net/images/icons/emoji/octocat.png">

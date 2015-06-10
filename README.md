@@ -33,6 +33,7 @@ There’s a couple of ways to develop/test this script:
 * [ScriptUI Events: `call()`, `dispatchEvent()`, `notify()`](http://www.davidebarranca.com/2013/08/extendscript-scriptui-events-call-notify-dispatchevent/)
 * [fabiantheblind/extendscript](https://github.com/fabiantheblind/extendscript)
 * [jtnimoy/scripting-for-illustrator-tutorial](https://github.com/jtnimoy/scripting-for-illustrator-tutorial)
+* [Adobe Illustrator CC 2014 Scripting Guide](http://wwwimages.adobe.com/content/dam/Adobe/en/devnet/illustrator/sdk/CC2014/Illustrator%20Scripting%20Guide.pdf)
 * [Adobe® Creative Suite® 5: Javascript Tools Guide](http://wwwimages.adobe.com/content/dam/Adobe/en/products/indesign/pdfs/JavaScriptToolsGuide_CS5.pdf) _(4.6MB PDF)_
 * [ExtendScript libraries](https://forums.adobe.com/thread/1111415)
 * [ScriptUI Window in Photoshop – Palette vs. Dialog](http://www.davidebarranca.com/2012/10/scriptui-window-in-photoshop-palette-vs-dialog/)

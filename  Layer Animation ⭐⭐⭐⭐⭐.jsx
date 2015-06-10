@@ -1,7 +1,7 @@
 ﻿#target illustrator
 
 /**
- * @@@BUILDINFO@@@ IllyAnim.jsx !Version! Sat Jun 06 2015 18:18:19 GMT-0700
+ * @@@BUILDINFO@@@  Layer Animation ⭐⭐⭐⭐⭐.jsx !Version! Tue Jun 09 2015 19:55:25 GMT-0700
  */
 
 // Dialog window instance:
@@ -69,7 +69,7 @@ function init() {
     
     dialog.onShow = function() {
         dialog.location.y = 150; // Adjust window so it's not in the center of the screen.
-    }
+    };
     
     // Show the dialog window:
     dialog.show();
@@ -129,20 +129,25 @@ function clean(restore) {
     // Loop over all top-level layers in document:
     for (i = 0, il = layers.length; i < il; i++) {
         
-        // Do we want to restore previous layer's visibility?
-        if (restore) {
+        // Skip template layers:
+        if (layers[i].printable) {
             
-            // Yes, so get visibility flags from history array:
-            layers[i].visible = history[i];
-            
-        } else {
-            
-            // Not now, but create history array for later resoration:
-            history[i] = layers[i].visible;
-            
-            // Hide everything:
-            layers[i].visible = false;
-            
+            // Do we want to restore previous layer's visibility?
+            if (restore) {
+                
+                // Yes, so get visibility flags from history array:
+                layers[i].visible = history[i];
+                
+            } else {
+                
+                // Not now, but create history array for later restoration:
+                history[i] = layers[i].visible;
+                
+                // Hide everything:
+                layers[i].visible = false;
+                
+           }
+           
        }
         
     }
@@ -151,22 +156,28 @@ function clean(restore) {
 
 function control(i) {
     
+    var layers = doc.layers;
     var current;
     var previous;
     
-    // Current layer:
-    current = doc.layers[i];
-    
-    // Cache the current layer so we can turn it off in the next loop:
-    previous = current;
-    
-    // Show the current layer:
-    current.visible = true;
-    
-    // Pause the looping to control "frame rate" of "animation":
-    $.setTimeout('redraw', Number(dialog._time.text)); // `EditText` control accepts just text.
-    
-    // We're moving on, hide the layer in preparation for the next loop:
-    previous.visible = false;  
+    // Skip template layers:
+    if (layers[i].printable) {
+        
+        // Current layer:
+        current = layers[i];
+        
+        // Cache the current layer so we can turn it off in the next loop:
+        previous = current;
+        
+        // Show the current layer:
+        current.visible = true;
+        
+        // Pause the looping to control "frame rate" of "animation":
+        $.setTimeout('redraw', Number(dialog._time.text)); // `EditText` control accepts just text.
+        
+        // We're moving on, hide the layer in preparation for the next loop:
+        previous.visible = false;
+        
+    }
     
 }
